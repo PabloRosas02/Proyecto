@@ -13,6 +13,8 @@
         "future": "c",
         "system_error": "c",
         "regex": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "stdio.h": "c",
+        "freertos.h": "c"
     }
 }
