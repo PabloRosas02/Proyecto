@@ -25,4 +25,3 @@ static esp_err_t http_post_handler(httpd_req_t *req);
 static esp_err_t http_get_handler(httpd_req_t *req);
 
 #endif
-
