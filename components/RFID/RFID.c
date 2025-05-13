@@ -1,5 +1,8 @@
 #include "RFID.h"
-#include "esp_log.h"
+
+#define compara "38202"
+
+char card[10];
 
 static void reader_callback(wiegand_reader_t *r){
     data_packet_t p;
@@ -8,8 +11,13 @@ static void reader_callback(wiegand_reader_t *r){
     xQueueSendToBack(queue, &p, 0);
 }
 
-static void wiegand_task(void *arg){
+void gpio_init(){
+    gpio_reset_pin(GPIO_NUM_23);
+    gpio_set_direction(GPIO_NUM_23, GPIO_MODE_OUTPUT);
+}
 
+static void wiegand_task(void *arg){
+    gpio_init();
     queue = xQueueCreate(5, sizeof(data_packet_t));
     if (!queue) {
         ESP_LOGE(TAG, "Error al crear la cola");
@@ -49,21 +57,26 @@ static void wiegand_task(void *arg){
             }
             value = value >> (bytes * 8 - p.bits); // Desplaza para eliminar bits basura
 
-            // Ajustar si hay bits sobrantes a la izquierda
-            if (p.bits == 26) {
-                // Wiegand 26: 1 bit paridad + 8 facility code + 16 ID + 1 bit paridad
-                uint32_t raw = (uint32_t)value;
-                uint8_t facility = (raw >> 17) & 0xFF;
-                uint16_t card_id = (raw >> 1) & 0xFFFF;
-            
-                ESP_LOGI(TAG, "Facility code: %u", facility);
-                ESP_LOGI(TAG, "Card ID: %u", card_id);
+            // Wiegand 26: 1 bit paridad + 8 facility code + 16 ID + 1 bit paridad
+            uint32_t raw = (uint32_t)value;
+            uint8_t facility = (raw >> 17) & 0xFF;
+            uint16_t card_id = (raw >> 1) & 0xFFFF;
+        
+            ESP_LOGI(TAG, "Facility code: %u", facility);
+            ESP_LOGI(TAG, "Card ID: %u", card_id);
+            sprintf(card,"%u", card_id);
+
+            if(strcmp(card, compara) == 0){
+                ESP_LOGI(TAG, "Tarjeta correcta");
+                gpio_set_level(GPIO_NUM_23, 0);
+                vTaskDelay(2000 / portTICK_PERIOD_MS);
+                gpio_set_level(GPIO_NUM_23, 1);
             }
         }
     }
 }
 
-void inicio()
-{
+void inicio(){
+
     xTaskCreate(wiegand_task, "wiegand_task", 4096, NULL, 5, NULL);
 }

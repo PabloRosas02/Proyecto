@@ -5,9 +5,11 @@
 #include <wiegand.h>
 #include <string.h>
 #include <inttypes.h> // para usar PRIu64
+#include "driver/gpio.h"
+#include "esp_log.h"
 
-#define GPIO_WIEGAND_D0 18  // Ajusta a tu pin real
-#define GPIO_WIEGAND_D1 19  // Ajusta a tu pin real
+#define GPIO_WIEGAND_D0 18  
+#define GPIO_WIEGAND_D1 19 
 #define WIEGAND_BUF_SIZE 8 // hasta 64 bits (8 bytes)
 
 static const char *TAG = "wiegand_reader";
