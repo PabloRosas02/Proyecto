@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel del Profesor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  <div class="container mt-3 d-flex justify-content-between align-items-center">
+    <h2 class="mb-0">Panel del Profesor</h2>
+    <button class="btn btn-outline-danger" onclick="cerrarSesion()">Cerrar sesión</button>
+  </div>
+  <hr />
+
+  <div class="container">
+    <div id="infoProfesor" class="text-center mb-3"></div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="profesorTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="horarios-tab" data-bs-toggle="tab" data-bs-target="#horarios" type="button" role="tab">Horarios Asignados</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="estado-tab" data-bs-toggle="tab" data-bs-target="#estado" type="button" role="tab">Estado de Salones</button>
+      </li>
+    </ul>
+
+    <div class="tab-content pt-3">
+      <!-- Horarios -->
+      <div class="tab-pane fade show active" id="horarios" role="tabpanel">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Día</th>
+              <th>Hora Inicio</th>
+              <th>Hora Fin</th>
+              <th>Salón</th>
+            </tr>
+          </thead>
+          <tbody id="tablaHorarios"></tbody>
+        </table>
+      </div>
+
+      <!-- Estado -->
+      <div class="tab-pane fade" id="estado" role="tabpanel">
+        <table class="table table-bordered" id="tablaEstadoSalones">
+          <thead>
+            <tr>
+              <th>Salón</th>
+              <th>Profesor</th>
+              <th>Desde</th>
+              <th>Hasta</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tablaSalones"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/profesor.js"></script>
+</body>
+</html>
