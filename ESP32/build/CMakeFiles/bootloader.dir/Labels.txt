@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+E:/IOT/Proyecto_v3/build/CMakeFiles/bootloader
+E:/IOT/Proyecto_v3/build/CMakeFiles/bootloader.rule
+E:/IOT/Proyecto_v3/build/CMakeFiles/bootloader-complete.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+E:/IOT/Proyecto_v3/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
